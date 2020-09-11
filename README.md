@@ -13,53 +13,58 @@
 |  first_name   |  string   |  null: false,  default: ""  | 
 |  fam_reading  |  string   |  null: false,  default: ""  | 
 |  fir_reading  |  string   |  null: false,  default: ""  | 
-|  birth_year   |  integer  |  null: false                |
-|  birth_month  |  integer  |  null: false                |
-|  birth_day    |  integer  |  null: false                |
+|  birth_date   |  date     |  null: false                |
 
 ### Association
 
-- has_many : item
-- has_many : address
+- has_many : items
+- has_many : purchases
 
 ## items テーブル
 
-|  Column         |  Type        |  Options                           |  
-|  -------------- |  ----------- |  --------------------------------- |
-|  image          |  string      |  null: false                       |   
-|  product_name   |  string      |  null: false,  default: ""         | 
-|  explanation    |  text        |  null: false,  default: ""         | 
-|  category       |  string      |  null: false                       | 
-|  product_status |  string      |  null: false                       | 
-|  fee_burden     |  string      |  null: false                       | 
-|  shipping_area  |  string      |  null: false                       | 
-|  shipping_days  |  string      |  null: false                       |
-|  price          |  integer     |  null: false,  default: ""         |
-|  user           |  references  |  null: false,  foreign_key: true   |
+|  Column            |  Type        |  Options                           |  
+|  ----------------- |  ----------- |  --------------------------------- |  
+|  product_name      |  string      |  null: false,  default: ""         | 
+|  explanation       |  text        |  null: false,  default: ""         | 
+|  category_id       |  integer     |  null: false                       | 
+|  product_status_id |  integer     |  null: false                       | 
+|  fee_burden_id     |  integer     |  null: false                       | 
+|  shipping_area_id  |  integer     |  null: false                       | 
+|  shipping_days_id  |  integer     |  null: false                       |
+|  price             |  integer     |  null: false,  default: ""         |
+|  user              |  references  |  null: false,  foreign_key: true   |
 
 ### Association
 
 - belongs_to : user
-- belongs_to : address
-
-## cards テーブル
-### Association
+- has_one : purchase
 
 ## addresses テーブル
 
 |  Column         |  Type       |  Options                          |    
 | --------------- |  ---------- |  -------------------------------- |
 |  postal_number  |  string     |  null: false,  default: ""        |    
-|  prefectures    |  string     |  null: false,                     | 
+|  prefectures_id |  integer    |  null: false,                     | 
 |  city           |  string     |  null: false,  default: ""        | 
 |  address        |  string     |  null: false,  default: ""        | 
 |  building_name  |  string     |                default: ""        | 
-|  phone_number   |  integer    |  null: false,  default: ""        | 
+|  phone_number   |  string     |  null: false,  default: ""        | 
+
+### Association
+
+- has_one : purchase
+
+## purchases テーブル
+
+|  Column         |  Type       |  Options                          |    
+| --------------- |  ---------- |  -------------------------------- |
 |  user           |  references |  null: false,  foreign_key: true  | 
 |  item           |  references |  null: false,  foreign_key: true  |
+|  address        |  references |  null: false,  foreign_key: true  |
+
 
 ### Association
 
 - belongs_to : user
-- has_many : item
-
+- belongs_to : item
+- belongs_to : address
