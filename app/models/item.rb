@@ -16,7 +16,7 @@ class Item < ApplicationRecord
     validates :category_id, numericality: { other_than: 1 }
     validates :product_status_id, numericality: { other_than: 1 }
     validates :fee_burden_id, numericality: { other_than: 1 }
-    validates :shipping_area_id, numericality: { other_than: 1 }
+    validates :shipping_area_id, numericality: { other_than: 0 }
     validates :shipping_days_id, numericality: { other_than: 1 }
     validates :price, format: {with: /\A[0-9]+\z/, message: "半角数字のみで入力してください"}
   end
