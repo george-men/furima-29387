@@ -53,22 +53,22 @@ RSpec.describe Item, type: :model do
     it 'priceが空だと保存できないこと' do
       @item.price = nil
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price can't be blank", "Price is invalid. Input half-width characters", "Price is out of setting range")
+      expect(@item.errors.full_messages).to include("Price can't be blank", 'Price is invalid. Input half-width characters', 'Price is out of setting range')
     end
     it 'priceが全角数字だと保存できないこと' do
       @item.price = '２０００'
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price is out of setting range")
+      expect(@item.errors.full_messages).to include('Price is out of setting range')
     end
     it 'priceが300円未満では保存できないこと' do
       @item.price = 200
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price is out of setting range")
+      expect(@item.errors.full_messages).to include('Price is out of setting range')
     end
     it 'priceが9,999,999円を超過すると保存できないこと' do
-      @item.price = 100000000
+      @item.price = 100_000_000
       @item.valid?
-      expect(@item.errors.full_messages).to include("Price is out of setting range")
+      expect(@item.errors.full_messages).to include('Price is out of setting range')
     end
   end
 end
