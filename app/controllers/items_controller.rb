@@ -28,6 +28,8 @@ class ItemsController < ApplicationController
       redirect_to new_user_session_path
     end
   end
+  
+  private
 
   def item_params
     params.require(:item).permit(:product_name,:explanation,:category_id,:product_status_id,:fee_burden_id,:shipping_area_id,:shipping_days_id,:price)
