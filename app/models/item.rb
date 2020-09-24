@@ -17,7 +17,7 @@ class Item < ApplicationRecord
     validates :product_status_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :fee_burden_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :shipping_area_id, numericality: { other_than: 0, message: "can't be blank" }
-    validates :shipping_days_id, numericality: { other_than: 1, message: "can't be blank" }
+    validates :shipping_day_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :price, format: { with: /\A[0-9]+\z/, message: 'is invalid. Input half-width characters' }
   end
 
