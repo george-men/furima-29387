@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
+  before_action :set_item, only: [:edit, :show]
 
   def index
     @items = Item.order('created_at DESC')
@@ -19,11 +20,9 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   def edit
-    @item = Item.find(params[:id])
   end
 
   def update
@@ -44,4 +43,9 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:image, :product_name, :explanation, :category_id, :product_status_id, :fee_burden_id, :shipping_area_id, :shipping_day_id, :price).merge(user_id: current_user.id)
   end
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
 end
