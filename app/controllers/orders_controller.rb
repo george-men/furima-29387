@@ -4,8 +4,12 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
+  def new
+    @item = UserOrder.new
+  end
+
   def create
-    @order = Order.new(order_params)
+    @order = UserOrder.new(order_params)
     if @order.valid?
       pay_item
       @order.save
@@ -18,7 +22,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.permit(:postal_number, :prefecture_id, :city, :address, :building_name, :phone_number, :token)
+    params.require(:user_order).permit(:postal_number, :prefecture_id, :city, :address, :building_name, :phone_number, :token)
   end
   
   def pay_item
