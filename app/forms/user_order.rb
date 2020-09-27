@@ -14,13 +14,14 @@ class UserOrder
   
   def save
  
-    user = User.create
+    user = User.find(params[:user_id])
 
-    item = Item.create
+    item = Item.find(params[:item_id])
   
     Addresse.create(postal_number: postal_number, prefecture_id: prefecture_id, city: city, address: address, phone_number: phone_number, order_id: order.id)
 
-    Order.create(item_id: item.id, user_id: user.id)
+    order =  Order.create(item_id: item.id, user_id: user.id)
+
   end
 
 end
