@@ -8,7 +8,7 @@ class UserOrder
     validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
     validates :city
     validates :address
-    validates :phone_number, format: {with: /\A\d{11}\z/, message: "is invalid. Include nonehyphen(-)"}
+    validates :phone_number, format: {with: /\A\d{11}\z/, message: "is invalid. Include nonehyphen(-) or numover"}
     validates :token
   end
   
