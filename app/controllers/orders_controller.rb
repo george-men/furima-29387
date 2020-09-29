@@ -1,9 +1,9 @@
 class OrdersController < ApplicationController
   before_action :move_do_index, only: [:index]
   before_action :move_to_index, only: [:index]
+  before_action :set_item, only: [:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
     @order = UserOrder.new
   end
 
@@ -12,7 +12,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @order = UserOrder.new(order_params)
     if @order.valid?
       pay_item
@@ -50,4 +49,9 @@ class OrdersController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
 end
