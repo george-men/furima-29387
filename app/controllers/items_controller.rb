@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
     if item.destroy
       redirect_to root_path
     else
-      render :show, aleat: "削除が失敗しました"
+      render :show, aleat: '削除が失敗しました'
     end
   end
 
