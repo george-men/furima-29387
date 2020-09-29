@@ -22,12 +22,12 @@ RSpec.describe UserOrder, type: :model do
     it 'postal_numberが空では保存できないこと' do
       @order.postal_number = nil
       @order.valid?
-      expect(@order.errors.full_messages).to include("Postal number can't be blank", "Postal number is invalid. Include hyphen(-)")
+      expect(@order.errors.full_messages).to include("Postal number can't be blank", 'Postal number is invalid. Include hyphen(-)')
     end
     it 'postal_numberに「−」が無いと保存できないこと' do
-      @order.postal_number = "1234567"
+      @order.postal_number = '1234567'
       @order.valid?
-      expect(@order.errors.full_messages).to include("Postal number is invalid. Include hyphen(-)")
+      expect(@order.errors.full_messages).to include('Postal number is invalid. Include hyphen(-)')
     end
     it 'prefecture_idが選択されていなければ保存できないこと' do
       @order.prefecture_id = 0
@@ -47,17 +47,17 @@ RSpec.describe UserOrder, type: :model do
     it 'phone_numberが空では保存できないこと' do
       @order.phone_number = nil
       @order.valid?
-      expect(@order.errors.full_messages).to include("Phone number can't be blank", "Phone number is invalid. Include nonehyphen(-) or numover")
+      expect(@order.errors.full_messages).to include("Phone number can't be blank", 'Phone number is invalid. Include nonehyphen(-) or numover')
     end
     it 'phone_numberに「−」が入っていると保存できないこと' do
-      @order.phone_number = "080-3232-4444"
+      @order.phone_number = '080-3232-4444'
       @order.valid?
-      expect(@order.errors.full_messages).to include("Phone number is invalid. Include nonehyphen(-) or numover")
+      expect(@order.errors.full_messages).to include('Phone number is invalid. Include nonehyphen(-) or numover')
     end
     it 'phone_numberが12桁以上であると保存できないこと' do
-      @order.phone_number = "0803232456789"
+      @order.phone_number = '0803232456789'
       @order.valid?
-      expect(@order.errors.full_messages).to include("Phone number is invalid. Include nonehyphen(-) or numover")
+      expect(@order.errors.full_messages).to include('Phone number is invalid. Include nonehyphen(-) or numover')
     end
   end
 end
