@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
-
+  
+  before_action :move_do_index, only: [:index]
   before_action :move_to_index, only: [:index]
-  before_action :move_from_index, only: [:index]
 
   def index
     @item = Item.find(params[:item_id])
@@ -39,19 +39,17 @@ class OrdersController < ApplicationController
     )
   end
 
+  def move_do_index
+    redirect_to new_user_session_path unless user_signed_in?
+  end
+
   def move_to_index
     item = Item.find(params[:item_id])
     if current_user.id == item.user_id 
       redirect_to root_path 
-    end
-  end
-
-  def move_from_index
-    item = Item.find(params[:item_id])
-    if item.order.present?
+    elsif item.order.present?
       redirect_to root_path 
     end
   end
-
 
 end
